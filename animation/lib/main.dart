@@ -1,4 +1,4 @@
-import 'package:animation/animaion_page.dart';
+import 'package:animation/animated_widget_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -17,3 +17,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+  
