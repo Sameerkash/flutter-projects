@@ -18,7 +18,7 @@ class _AnimationPageState extends State<AnimationPage>
 
     final curvedAnimation = CurvedAnimation(
       parent: animController,
-      curve: Curves.easeIn,
+      curve: Curves.bounceIn,
       reverseCurve: Curves.easeOut,
     );
 
@@ -38,8 +38,9 @@ class _AnimationPageState extends State<AnimationPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ResocoderImage(
-        animation: animation,
+      body: RotatingTransition(
+        child: ResocoderImage(),
+        angle: animation,
       ),
     );
   }
@@ -51,24 +52,36 @@ class _AnimationPageState extends State<AnimationPage>
   }
 }
 
-class ResocoderImage extends AnimatedWidget {
-  ResocoderImage({
-    Key key,
-    @required Animation<double> animation,
-  }) : super(key: key, listenable: animation);
-
+class RotatingTransition extends StatelessWidget {
+  RotatingTransition({
+    @required this.angle,
+    @required this.child,
+  });
+  final Widget child;
+  final Animation<double> angle;
   @override
   Widget build(BuildContext context) {
-    final animation = listenable as Animation<double>;
+    return AnimatedBuilder(
+      animation: angle,
+      child: child,
+      builder: (context, child) {
+        return Transform.rotate(
+          angle: angle.value,
+          child: child,
+        );
+      },
+    );
+  }
+}
 
-    return Transform.rotate(
-      angle: animation.value,
-      child: Container(
-        alignment: Alignment.center,
-        padding: EdgeInsets.all(30),
-        child: Image.asset(
-          'assets/dart.jpg',
-        ),
+class ResocoderImage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.all(30),
+      child: Image.asset(
+        'assets/dart.jpg',
       ),
     );
   }
