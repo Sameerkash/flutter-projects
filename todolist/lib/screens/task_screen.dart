@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/models/task.dart';
 import '../widgets/task_list.dart';
 
-class TaskScreen extends StatelessWidget {
+class TaskScreen extends StatefulWidget {
+  @override
+  _TaskScreenState createState() => _TaskScreenState();
+}
+
+class _TaskScreenState extends State<TaskScreen> {
+  List<Task> tasks = [
+    Task(name: 'Buy Milk'),
+    Task(name: 'Buy eggs'),
+    Task(name: "buy pens"),
+  ];
+
+  String newTask;
+
+  var textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +54,7 @@ class TaskScreen extends StatelessWidget {
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
-                  "12 tasks",
+                  "${tasks.length} Tasks",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18.0,
@@ -60,7 +75,9 @@ class TaskScreen extends StatelessWidget {
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20)),
               ),
-              child: TaskList(),
+              child: TaskList(
+                tasks: tasks,
+              ),
             ),
           )
         ],
@@ -103,10 +120,15 @@ class TaskScreen extends StatelessWidget {
                 color: Colors.lightBlueAccent,
               ),
             ),
-            SizedBox(height: 50,),
+            SizedBox(
+              height: 50,
+            ),
             TextField(
-              textAlign: TextAlign.center ,
+              textAlign: TextAlign.center,
               autofocus: true,
+              onChanged: (newValue) {
+                newTask = newValue;
+              },
             ),
             SizedBox(
               height: 60,
@@ -120,7 +142,12 @@ class TaskScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  tasks.add(Task(name: newTask));
+                });
+                Navigator.pop(context);
+              },
             )
           ],
         ),
