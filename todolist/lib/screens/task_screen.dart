@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todolist/models/task.dart';
+import 'package:todolist/models/task_data.dart';
 import '../widgets/task_list.dart';
 
 class TaskScreen extends StatefulWidget {
@@ -8,17 +10,12 @@ class TaskScreen extends StatefulWidget {
 }
 
 class _TaskScreenState extends State<TaskScreen> {
-  List<Task> tasks = [
-    Task(name: 'Buy Milk'),
-    Task(name: 'Buy eggs'),
-    Task(name: "buy pens"),
-  ];
-
   String newTask;
 
   var textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final tasks = Provider.of<TaskData>(context);
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       body: Column(
@@ -54,7 +51,7 @@ class _TaskScreenState extends State<TaskScreen> {
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
-                  "${tasks.length} Tasks",
+                  "${tasks.tasks.length} Tasks",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18.0,
@@ -75,9 +72,7 @@ class _TaskScreenState extends State<TaskScreen> {
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20)),
               ),
-              child: TaskList(
-                tasks: tasks,
-              ),
+              child: TaskList(),
             ),
           )
         ],
@@ -96,6 +91,8 @@ class _TaskScreenState extends State<TaskScreen> {
   }
 
   Widget buildBottomSheet(BuildContext context) {
+    final tasks = Provider.of<TaskData>(context);
+
     return Container(
       color: Color(0xff3757575),
       child: Container(
@@ -143,9 +140,8 @@ class _TaskScreenState extends State<TaskScreen> {
                 ),
               ),
               onPressed: () {
-                setState(() {
-                  tasks.add(Task(name: newTask));
-                });
+                tasks.update(newTask);
+
                 Navigator.pop(context);
               },
             )
