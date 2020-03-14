@@ -136,7 +136,7 @@ class _TaskScreenState extends State<TaskScreen> {
                 "Add",
                 style: TextStyle(
                   fontSize: 30,
-                  color: Colors.white,
+                  color: Colors.white,  
                 ),
               ),
               onPressed: () {
