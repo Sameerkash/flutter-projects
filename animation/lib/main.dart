@@ -1,4 +1,5 @@
 import 'package:animation/animated_widget_page.dart';
+import 'package:animation/animations.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -10,11 +11,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        
         primarySwatch: Colors.blue,
       ),
-      home: AnimationPage(),
+      home: Animations(),
     );
   }
 }
-  
