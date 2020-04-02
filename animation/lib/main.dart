@@ -1,7 +1,8 @@
 // import 'package:animation/animated_widget_page.dart';
 // import 'package:animation/animations.dart';
-import 'package:animation/delayed.dart';
-import 'package:animation/gestures.dart';
+// import 'package:animation/delayed.dart';
+// import 'package:animation/gestures.dart';
+import 'package:animation/parenting.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Delayed(),
+      home: Parenting(),
     );
   }
 }
