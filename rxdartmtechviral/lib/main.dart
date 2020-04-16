@@ -119,12 +119,21 @@ class _HomePageState extends State<HomePage> {
     var subject = BehaviorSubject<String>();
     // var subject = ReplaySubject<String>();
 
+    subject.listen((value) {
+      print("added $value to steam");
+    });
+
+    // subject.add("1");
+    
+    subject.add("Item 1");
+
+    subject.add("Item 2");
     // subject
     //     .map((event) => event.toUpperCase())
     //     .map((event) => event.substring(event.length - 1))
     //     // .map<Person>((event) => Person("PK $event"))
     //     .map((event) => num.tryParse(event))
-    //     // .where((event) => event % 2 == 0)
+    //     // .where((event) => e vent % 2 == 0)
     //     // .scan((a, b, index) => a + b, 1)
     //     // .asyncMap((event) async => await fetchWelcomeString())
     //     // .debounceTime(Duration(milliseconds: 100))
@@ -155,9 +164,6 @@ class _HomePageState extends State<HomePage> {
     //   print("Added $value to 1st Sub");
     // });
 
-    // subject.add("Item 1");
-
-    // subject.add("Item 2");
     // // subject.add("Item 2");
 
     // // subject.listen((value) {

@@ -3,6 +3,7 @@
 // import 'package:animation/delayed.dart';
 // import 'package:animation/gestures.dart';
 import 'package:animation/parenting.dart';
+import 'package:animation/value_change.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Parenting(),
+      home: ValueChange(),
     );
   }
 }
