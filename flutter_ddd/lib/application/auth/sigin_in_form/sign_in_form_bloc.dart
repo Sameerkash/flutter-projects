@@ -19,7 +19,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   SignInFormBloc(this._authFacade);
  
   @override
-   SignInFormState get initialState => SignInFormState.initail();
+  SignInFormState get initialState => SignInFormState.initail();
 
   @override
   Stream<SignInFormState> mapEventToState(
