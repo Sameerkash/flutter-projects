@@ -5,7 +5,7 @@ import 'package:flutter_ddd/domain/auth/value_objects.dart';
 
 // Firebase auth, Google Signin
 abstract class IAuthFacade {
-  Future<Either<AuthFailure, Unit>> reisterWithEmailAndPassword({
+  Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
     @required EmailAdress emailAdress,
     @required Password password,
   });

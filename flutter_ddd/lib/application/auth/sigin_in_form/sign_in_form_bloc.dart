@@ -41,7 +41,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
       },
       registerWithEmailAndPasswordPress: (e) async* {
         yield* _performActionOnAuthFacadeWithEmailAndPassword(
-            _authFacade.reisterWithEmailAndPassword);
+            _authFacade.registerWithEmailAndPassword);
       },
       signInWithEmailAndPasswordPress: (e) async* {
         yield* _performActionOnAuthFacadeWithEmailAndPassword(
