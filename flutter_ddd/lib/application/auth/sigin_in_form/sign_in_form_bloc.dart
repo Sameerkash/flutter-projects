@@ -17,8 +17,9 @@ part 'sign_in_form_state.dart';
 class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   final IAuthFacade _authFacade;
   SignInFormBloc(this._authFacade);
- 
+
   @override
+ 
   SignInFormState get initialState => SignInFormState.initail();
 
   @override
