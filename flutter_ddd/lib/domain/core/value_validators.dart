@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_ddd/domain/core/failures.dart';
 
-Either<ValueFailure, String> validateEmailAdress(String input) {
+Either<ValueFailure<String>, String> validateEmailAdress(String input) {
   const emailRegex =
       r"""^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+""";
   if (RegExp(emailRegex).hasMatch(input)) {
@@ -11,7 +11,7 @@ Either<ValueFailure, String> validateEmailAdress(String input) {
   }
 }
 
-Either<ValueFailure, String> validatePassword(String input) {
+Either<ValueFailure<String>, String> validatePassword(String input) {
   if (input.length >= 6) {
     return right(input);
   } else {
