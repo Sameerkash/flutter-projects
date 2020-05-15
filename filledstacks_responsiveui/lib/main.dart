@@ -1,7 +1,11 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:filledstacks_responsiveui/ui/views/home_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(DevicePreview(
+    builder: (context) => MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -9,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: DevicePreview.appBuilder,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -26,7 +31,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      // home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: HomeView(),
     );
   }
 }
