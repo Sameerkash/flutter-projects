@@ -1,4 +1,4 @@
-# freezed
+# reso_freezed
 
 A new Flutter project.
 
