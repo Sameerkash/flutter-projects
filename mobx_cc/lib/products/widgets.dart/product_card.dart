@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../cart/cart.dart';
+import 'package:provider/provider.dart';
 import 'package:state_management_example/shared/models/product.dart';
 import 'package:state_management_example/shared/styles/app_colors.dart';
 import 'package:state_management_example/shared/styles/app_fonts.dart';
@@ -9,7 +11,7 @@ class ProductCard extends StatelessWidget {
   final Product product;
 
   void _addToCartOnClick(BuildContext context) {
-    //TODO: 3. Add provider and make an add to cart function
+    final cart = Provider.of<Cart>(context ,listen: false);
   }
 
   @override

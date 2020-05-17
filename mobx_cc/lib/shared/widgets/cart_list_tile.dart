@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:state_management_example/cart/cart.dart';
 import 'package:state_management_example/shared/models/product.dart';
 import 'package:state_management_example/shared/styles/app_colors.dart';
 import 'package:state_management_example/shared/styles/app_fonts.dart';
@@ -19,12 +21,11 @@ class CartListTile extends StatefulWidget {
 
 class _CartListTileState extends State<CartListTile> {
   int quantity;
-  //TODO: 11. Declare cart variable
-
+  Cart cart;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    //TODO: 12. Set cart from provider
+    cart = Provider.of<Cart>(context,listen: false);
   }
 
   @override
@@ -39,11 +40,11 @@ class _CartListTileState extends State<CartListTile> {
       title: 'Quantity',
       quantity: widget.quantity,
     );
-    //TODO: 14. Make a function to change product quantity in cart
+    cart.changeQuanity(widget.product,quantity);
   }
 
   void tileOnSwipe(Product product) {
-    //TODO: 13. Make a function to remove product from cart
+cart.removeAllFromCart(product);
   }
 
   @override
