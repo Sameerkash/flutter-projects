@@ -32,6 +32,8 @@ dependencies:
   get_it: ^4.0.1
   injectable: ^0.3.0
   flushbar: ^1.10.0
+  uuid: ^2.0.4
+
   
 
 

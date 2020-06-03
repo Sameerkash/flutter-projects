@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_ddd/domain/core/errors.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:uuid/uuid.dart';
 
 import 'failures.dart';
 
@@ -9,7 +10,8 @@ import 'failures.dart';
 abstract class ValueObject<T> {
   const ValueObject();
   Either<ValueFailure<T>, T> get value;
-///Throws unexpected valueError
+
+  ///Throws unexpected valueError
   T getorCrash() {
     return value.fold((f) => throw UnexpectedValueError(f), id);
   }
@@ -28,4 +30,24 @@ abstract class ValueObject<T> {
 
   @override
   String toString() => 'ValueObject($value)';
+}
+
+class UniqueId extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory UniqueId() {
+    return UniqueId._(
+      right(Uuid().v1()),
+    );
+  }
+
+  factory UniqueId.fromUniqueString(String uniqueId) {
+    assert(uniqueId != null);
+    return UniqueId._(
+      right(uniqueId),
+    );
+  }
+
+  const UniqueId._(this.value);
 }
