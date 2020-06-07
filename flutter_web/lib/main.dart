@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web/locator.dart';
-import 'package:flutter_web/views/home/home_view.dart';
 import 'package:flutter_web/views/layour_template/layout_template.dart';
+
+import 'locator.dart';
 
 void main() {
   setupLocator();

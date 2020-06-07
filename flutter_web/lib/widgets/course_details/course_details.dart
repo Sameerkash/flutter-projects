@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web/styles/text_styles.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class CourseDetails extends StatelessWidget {
@@ -9,18 +10,9 @@ class CourseDetails extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
         var textAlignment =
-            sizingInformation.deviceScreenType == DeviceScreenType.desktop
+            sizingInformation.deviceScreenType == DeviceScreenType.Desktop
                 ? TextAlign.left
                 : TextAlign.center;
-        double titleSize =
-            sizingInformation.deviceScreenType == DeviceScreenType.mobile
-                ? 50
-                : 80;
-
-        double descriptionSize =
-            sizingInformation.deviceScreenType == DeviceScreenType.mobile
-                ? 16
-                : 21;
 
         return Container(
           width: 600,
@@ -30,10 +22,7 @@ class CourseDetails extends StatelessWidget {
             children: <Widget>[
               Text(
                 'FLUTTER WEB.\nTHE BASICS',
-                style: TextStyle(
-                    fontWeight: FontWeight.w800,
-                    height: 0.9,
-                    fontSize: titleSize),
+                style: titleTextStyle(sizingInformation.deviceScreenType),
                 textAlign: textAlignment,
               ),
               SizedBox(
@@ -41,10 +30,7 @@ class CourseDetails extends StatelessWidget {
               ),
               Text(
                 'In this course we will go over the basics of using Flutter Web for website development. Topics will include Responsive Layout, Deploying, Font Changes, Hover Functionality, Modals and more.',
-                style: TextStyle(
-                  fontSize: descriptionSize,
-                  height: 1.7,
-                ),
+                style: descriptionTextStyle(sizingInformation.deviceScreenType),
                 textAlign: textAlignment,
               )
             ],

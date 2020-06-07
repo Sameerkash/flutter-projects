@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web/datamodels/navbar_item_model.dart';
-import 'package:flutter_web/locator.dart';
 import 'package:flutter_web/services/navigation_service.dart';
 import 'package:flutter_web/widgets/navbar_item/navbar_item_desktop.dart';
 import 'package:flutter_web/widgets/navbar_item/navbar_item_mobile.dart';
-import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+
+import '../../locator.dart';
+
 class NavBarItem extends StatelessWidget {
   final String title;
   final String navigationPath;
@@ -14,18 +15,23 @@ class NavBarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var model =  NavBarItemModel(
-          title: title,
-          navigationPath: navigationPath,
-          iconData: icon,
-        );
+    var model = NavBarItemModel(
+      title: title,
+      navigationPath: navigationPath,
+      iconData: icon,
+    );
     return GestureDetector(
-    
-      child: Provider.value(
-        value: model,
-        child: ScreenTypeLayout(
-          tablet: NavBarItemTabletDesktop(),
-          mobile: NavBarItemMobile(),
+      onTap: () {
+        // DON'T EVER USE A SERVICE DIRECTLY IN THE UI TO CHANGE ANY KIND OF STATE
+        // SERVICES SHOULD ONLY BE USED FROM A VIEWMODEL
+        locator<NavigationService>().navigateTo(navigationPath);
+      },
+      child: ScreenTypeLayout(
+        tablet: NavBarItemTabletDesktop(
+          model: model,
+        ),
+        mobile: NavBarItemMobile(
+          model: model,
         ),
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './../../widgets/navigation_bar/navigation_bar_tablet_desktop.dart';
-import './../../widgets/navigation_bar/navigation_bar_mobile.dart';
+import 'package:flutter_web/widgets/navigation_bar/navigation_bar_mobile.dart';
+import 'package:flutter_web/widgets/navigation_bar/navigation_bar_tablet_desktop.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class NavigationBar extends StatelessWidget {
