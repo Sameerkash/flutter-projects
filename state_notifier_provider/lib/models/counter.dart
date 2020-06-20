@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:state_notifier/state_notifier.dart';
-import 'package:state_notifier_provider/ilocal_storage.dart';
+import 'package:state_notifier_provider/services/ilocal_storage.dart';
 
 class Counter extends StateNotifier<int> with LocatorMixin{
   Counter() : super(0);

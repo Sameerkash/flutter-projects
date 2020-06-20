@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
-import 'package:state_notifier_provider/counter.dart';
+import 'package:state_notifier_provider/models/counter.dart';
 
 import 'package:provider/provider.dart';
-import 'package:state_notifier_provider/ilocal_storage.dart';
+import 'package:state_notifier_provider/services/ilocal_storage.dart';
+import 'package:state_notifier_provider/todos/todo_view.dart';
 
 void main() => runApp(
       MultiProvider(
@@ -25,58 +26,68 @@ class MyApp extends StatelessWidget {
     const fabPadding = EdgeInsets.all(5);
 
     return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+        primaryColorDark: Colors.black,
+        // primaryColor: Colors.grey,
+        textTheme: TextTheme(
+          headline1: TextStyle(color: Colors.black, fontSize: 20),
+        ),
+        selectedRowColor: Colors.green,
+      ),
       title: 'Material App',
       home: Scaffold(
         appBar: AppBar(
           title: Text('State Notifier Demo'),
         ),
-        floatingActionButton: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            Padding(
-              padding: fabPadding,
-              child: FloatingActionButton(
-                child: Icon(Icons.add),
 
-                ///Increment Counter
-                onPressed: () {
-                  context.read<Counter>().increment();
-                },
-              ),
-            ),
-            Padding(
-              padding: fabPadding,
-              child: FloatingActionButton(
-                  child: Icon(Icons.remove),
+        // floatingActionButton: Column(
+        //   crossAxisAlignment: CrossAxisAlignment.end,
+        //   mainAxisAlignment: MainAxisAlignment.end,
+        //   children: <Widget>[
+        //     Padding(
+        //       padding: fabPadding,
+        //       child: FloatingActionButton(
+        //         child: Icon(Icons.add),
 
-                  ///Decrement Counter
-                  onPressed: () {
-                    context.read<Counter>().decrement();
-                  }),
-            ),
-          ],
-        ),
-        body: _Body(),
+        //         ///Increment Counter
+        //         onPressed: () {
+        //           context.read<Counter>().increment();
+        //         },
+        //       ),
+        //     ),
+        //     Padding(
+        //       padding: fabPadding,
+        //       child: FloatingActionButton(
+        //           child: Icon(Icons.remove),
+
+        //           ///Decrement Counter
+        //           onPressed: () {
+        //             context.read<Counter>().decrement();
+        //           }),
+        //     ),
+        //   ],
+        // ),
+        body: Todo(),
       ),
     );
   }
 }
 
-class _Body extends StatelessWidget {
-  const _Body({
-    Key key,
-  }) : super(key: key);
+// class _Body extends StatelessWidget {
+//   const _Body({
+//     Key key,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        child: Text(
-          context.watch<int>().toString(),
-          style: Theme.of(context).textTheme.headline4,
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//       child: Container(
+//         child: Text(
+//           context.watch<int>().toString(),
+//           style: Theme.of(context).textTheme.headline4,
+//         ),
+//       ),
+//     );
+//   }
+// }
