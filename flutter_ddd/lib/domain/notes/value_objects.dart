@@ -40,7 +40,7 @@ class TodoName extends ValueObject<String> {
   const TodoName._(this.value);
 }
 
-class NotColor extends ValueObject<Color> {
+class NoteColor extends ValueObject<Color> {
   static const List<Color> predefinedColors = [
     Color(0xfffafafa), // canvas
     Color(0xfffa8072), // salmon
@@ -56,13 +56,13 @@ class NotColor extends ValueObject<Color> {
 
   static const maxLength = 30;
 
-  factory NotColor(Color input) {
+  factory NoteColor(Color input) {
     assert(input != null);
-    return NotColor._(
+    return NoteColor._(
       right(makeColorOpaue(input)),
     );
   }
-  const NotColor._(this.value);
+  const NoteColor._(this.value);
 }
 
 class List3<T> extends ValueObject<KtList<T>> {

@@ -9,12 +9,16 @@ import 'failures.dart';
 @immutable
 abstract class ValueObject<T> {
   const ValueObject();
-  
+
   Either<ValueFailure<T>, T> get value;
 
   ///Throws unexpected valueError
   T getorCrash() {
     return value.fold((f) => throw UnexpectedValueError(f), id);
+  }
+
+  Either<ValueFailure<dynamic>, Unit> get failureOrUnit {
+    return value.fold((l) => left(l), (r) => right(unit));
   }
 
   bool isValid() => value.isRight();
