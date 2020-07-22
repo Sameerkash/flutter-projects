@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:tdd/core/errors/exceptions.dart';
 
 import '../../../../core/errors/failure.dart';
-import '../../../../core/platform/network_info.dart';
+import '../../../../core/network/network_info.dart';
 import '../../domain/entities/number_trivia.dart';
 import '../../domain/repositories/number_trivia_repository.dart';
 import '../datasources/number_trivia_local_data_source.dart';

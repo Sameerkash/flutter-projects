@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -6,7 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:tdd/core/errors/exceptions.dart';
 import 'package:tdd/core/errors/failure.dart';
 
-import 'package:tdd/core/platform/network_info.dart';
+import 'package:tdd/core/network/network_info.dart';
 import 'package:tdd/features/number-trivia/data/datasources/number_trivia_remote_data_source.dart';
 import 'package:tdd/features/number-trivia/data/datasources/number_trivia_local_data_source.dart';
 import 'package:tdd/features/number-trivia/data/models/number_trivia_model.dart';
