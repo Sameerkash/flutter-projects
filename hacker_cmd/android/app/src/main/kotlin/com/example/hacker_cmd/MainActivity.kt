@@ -1,0 +1,6 @@
+package com.example.hacker_cmd
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
