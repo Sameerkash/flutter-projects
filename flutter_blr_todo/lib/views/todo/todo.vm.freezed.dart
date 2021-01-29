@@ -19,9 +19,10 @@ class _$TodoStateTearOff {
   }
 
 // ignore: unused_element
-  _Loaded loaded(List<Todo> todos) {
+  _Loaded loaded(List<Todo> todos, List<Todo> comeplted) {
     return _Loaded(
       todos,
+      comeplted,
     );
   }
 
@@ -40,13 +41,13 @@ mixin _$TodoState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult loading(),
-    @required TResult loaded(List<Todo> todos),
+    @required TResult loaded(List<Todo> todos, List<Todo> comeplted),
     @required TResult empty(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult loading(),
-    TResult loaded(List<Todo> todos),
+    TResult loaded(List<Todo> todos, List<Todo> comeplted),
     TResult empty(),
     @required TResult orElse(),
   });
@@ -117,7 +118,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult loading(),
-    @required TResult loaded(List<Todo> todos),
+    @required TResult loaded(List<Todo> todos, List<Todo> comeplted),
     @required TResult empty(),
   }) {
     assert(loading != null);
@@ -130,7 +131,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult loading(),
-    TResult loaded(List<Todo> todos),
+    TResult loaded(List<Todo> todos, List<Todo> comeplted),
     TResult empty(),
     @required TResult orElse(),
   }) {
@@ -178,7 +179,7 @@ abstract class _Loading implements TodoState {
 abstract class _$LoadedCopyWith<$Res> {
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) then) =
       __$LoadedCopyWithImpl<$Res>;
-  $Res call({List<Todo> todos});
+  $Res call({List<Todo> todos, List<Todo> comeplted});
 }
 
 /// @nodoc
@@ -193,23 +194,29 @@ class __$LoadedCopyWithImpl<$Res> extends _$TodoStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object todos = freezed,
+    Object comeplted = freezed,
   }) {
     return _then(_Loaded(
       todos == freezed ? _value.todos : todos as List<Todo>,
+      comeplted == freezed ? _value.comeplted : comeplted as List<Todo>,
     ));
   }
 }
 
 /// @nodoc
 class _$_Loaded implements _Loaded {
-  const _$_Loaded(this.todos) : assert(todos != null);
+  const _$_Loaded(this.todos, this.comeplted)
+      : assert(todos != null),
+        assert(comeplted != null);
 
   @override
   final List<Todo> todos;
+  @override
+  final List<Todo> comeplted;
 
   @override
   String toString() {
-    return 'TodoState.loaded(todos: $todos)';
+    return 'TodoState.loaded(todos: $todos, comeplted: $comeplted)';
   }
 
   @override
@@ -217,12 +224,17 @@ class _$_Loaded implements _Loaded {
     return identical(this, other) ||
         (other is _Loaded &&
             (identical(other.todos, todos) ||
-                const DeepCollectionEquality().equals(other.todos, todos)));
+                const DeepCollectionEquality().equals(other.todos, todos)) &&
+            (identical(other.comeplted, comeplted) ||
+                const DeepCollectionEquality()
+                    .equals(other.comeplted, comeplted)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(todos);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(todos) ^
+      const DeepCollectionEquality().hash(comeplted);
 
   @JsonKey(ignore: true)
   @override
@@ -233,26 +245,26 @@ class _$_Loaded implements _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult loading(),
-    @required TResult loaded(List<Todo> todos),
+    @required TResult loaded(List<Todo> todos, List<Todo> comeplted),
     @required TResult empty(),
   }) {
     assert(loading != null);
     assert(loaded != null);
     assert(empty != null);
-    return loaded(todos);
+    return loaded(todos, comeplted);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult loading(),
-    TResult loaded(List<Todo> todos),
+    TResult loaded(List<Todo> todos, List<Todo> comeplted),
     TResult empty(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loaded != null) {
-      return loaded(todos);
+      return loaded(todos, comeplted);
     }
     return orElse();
   }
@@ -287,9 +299,10 @@ class _$_Loaded implements _Loaded {
 }
 
 abstract class _Loaded implements TodoState {
-  const factory _Loaded(List<Todo> todos) = _$_Loaded;
+  const factory _Loaded(List<Todo> todos, List<Todo> comeplted) = _$_Loaded;
 
   List<Todo> get todos;
+  List<Todo> get comeplted;
   @JsonKey(ignore: true)
   _$LoadedCopyWith<_Loaded> get copyWith;
 }
@@ -331,7 +344,7 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult loading(),
-    @required TResult loaded(List<Todo> todos),
+    @required TResult loaded(List<Todo> todos, List<Todo> comeplted),
     @required TResult empty(),
   }) {
     assert(loading != null);
@@ -344,7 +357,7 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult loading(),
-    TResult loaded(List<Todo> todos),
+    TResult loaded(List<Todo> todos, List<Todo> comeplted),
     TResult empty(),
     @required TResult orElse(),
   }) {

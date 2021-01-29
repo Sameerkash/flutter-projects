@@ -12,6 +12,7 @@ class TodoScreen extends HookWidget {
   Widget build(BuildContext context) {
     final todos = useProvider(todosProvider.state);
     final compltedTodos = useProvider(completedTodos);
+    final ctodo = useProvider(todoProvider.state);
     final search = useTextEditingController();
 
     return DefaultTabController(
@@ -19,7 +20,6 @@ class TodoScreen extends HookWidget {
       child: Scaffold(
         key: globalScaffoldKey,
         appBar: AppBar(
-          
           backgroundColor: Colors.deepPurpleAccent,
           title: Text("TODOS"),
           bottom: PreferredSize(
@@ -69,35 +69,60 @@ class TodoScreen extends HookWidget {
             ),
           ),
         ),
-        body: TabBarView(children: [
-          Column(
-            children: [
-              AddTodoPanel(),
-              SizedBox(
-                height: 20,
-              ),
-              ListView(
-                shrinkWrap: true,
-                children: [
-                  ...todos.map(
-                    (t) => TodoItem(
-                      todo: t,
-                    ),
-                  )
-                ],
-              )
-            ],
+        body:
+         ctodo.map(
+          loading: (_) => Center(
+            child: CircularProgressIndicator(),
           ),
-          ListView(
-            children: [
-              ...compltedTodos.map(
-                (t) => TodoItem(
-                  todo: t,
+          loaded: (data) =>
+           TabBarView(children: [
+            Column(
+              children: [
+                AddTodoPanel(),
+                SizedBox(
+                  height: 20,
                 ),
-              )
-            ],
-          ),
-        ]),
+                ListView(
+                  shrinkWrap: true,
+                  children: [
+                    //complex
+
+                    // ...data.todos.map(
+                    //   (t) => TodoItem(
+                    //     todo: t,
+                    //   ),
+                    // )
+
+                    /// Simple
+                    ...todos.map(
+                      (t) => TodoItem(
+                        todo: t,
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+            ListView(
+              children: [
+                /// Complex
+                // ...data.comeplted.map(
+                //   (t) => TodoItem(
+                //     todo: t,
+                //   ),
+                // )
+
+                /// Simple
+                ...compltedTodos.map(
+                  (t) => TodoItem(
+                    todo: t,
+                  ),
+                )
+              ],
+            ),
+          ]),
+          empty: (_) => AddTodoPanel(),
+        ),
       ),
     );
   }
@@ -177,6 +202,10 @@ class TodoItem extends HookWidget {
                   Checkbox(
                     value: todo.completed,
                     onChanged: (_) {
+                      ///complex
+                      context.read(todoProvider).toggle(todo);
+
+                      ///
                       context.read(todosProvider).toggle(todo.id);
                     },
                   ),
@@ -195,7 +224,9 @@ class TodoItem extends HookWidget {
                                 FlatButton(
                                     color: Colors.grey,
                                     onPressed: () {
-                                     globalScaffoldKey.currentContext.read(todosProvider).resetState();
+                                      globalScaffoldKey.currentContext
+                                          .read(todosProvider)
+                                          .resetState();
                                     },
                                     child: Text("Undo"))
                               ],
@@ -227,7 +258,11 @@ class AddTodoPanel extends HookWidget {
               controller: txt,
               decoration: InputDecoration(hintText: 'New todo'),
               onSubmitted: (t) {
-                context.read(todosProvider).add(txt.value.text);
+                /// complex
+                context.read(todoProvider).add(t);
+
+                ///
+                context.read(todosProvider).add(t);
                 txt.clear();
               },
             ),
@@ -235,7 +270,11 @@ class AddTodoPanel extends HookWidget {
           IconButton(
             icon: Icon(Icons.check),
             onPressed: () {
+              ///complex
               context.read(todosProvider).add(txt.value.text);
+
+              ///
+              context.read(todoProvider).add(txt.value.text);
             },
           ),
         ],
