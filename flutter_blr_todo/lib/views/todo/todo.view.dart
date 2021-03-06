@@ -6,7 +6,7 @@ import 'package:flutter_blr_todo/models/todo.dart';
 import 'package:flutter_blr_todo/views/todo/todo.vm.dart';
 
 final globalScaffoldKey = GlobalKey<ScaffoldState>();
-
+ 
 class TodoScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
@@ -87,18 +87,18 @@ class TodoScreen extends HookWidget {
                   children: [
                     //complex
 
-                    // ...data.todos.map(
-                    //   (t) => TodoItem(
-                    //     todo: t,
-                    //   ),
-                    // )
-
-                    /// Simple
-                    ...todos.map(
+                    ...data.todos.map(
                       (t) => TodoItem(
                         todo: t,
                       ),
                     )
+
+                    /// Simple
+                    // ...todos.map(
+                    //   (t) => TodoItem(
+                    //     todo: t,
+                    //   ),
+                    // )
                   ],
                 )
               ],
@@ -106,18 +106,18 @@ class TodoScreen extends HookWidget {
             ListView(
               children: [
                 /// Complex
-                // ...data.comeplted.map(
-                //   (t) => TodoItem(
-                //     todo: t,
-                //   ),
-                // )
-
-                /// Simple
-                ...compltedTodos.map(
+                ...data.comeplted.map(
                   (t) => TodoItem(
                     todo: t,
                   ),
                 )
+
+                /// Simple
+                // ...compltedTodos.map(
+                //   (t) => TodoItem(
+                //     todo: t,
+                //   ),
+                // )
               ],
             ),
           ]),

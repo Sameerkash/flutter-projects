@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_command/command_builder.dart';
 
 import 'package:hacker_cmd/models/common.dart';
+import 'package:hacker_cmd/service/locator.dart';
 import 'package:hacker_cmd/views/home.vm.dart';
 
 class HomeView extends StatelessWidget {
-  final homevm = HomeVM();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +15,7 @@ class HomeView extends StatelessWidget {
         backgroundColor: Colors.deepPurple,
       ),
       body: CommandBuilder(
-        command: homevm.storiesCommand,
+        command: getIt.get<HomeVM>().storiesCommand,
         whileExecuting: (context, comments, _) => Center(
           child: SizedBox(
             width: 50.0,
@@ -34,6 +34,7 @@ class HomeView extends StatelessWidget {
           itemBuilder: (_, index) {
             return ListTile(
               onTap: () {
+                getIt.get<HomeVM>().fetchComments(stories[index]);
                 Navigator.push(
                   context,
                   CupertinoPageRoute(
@@ -76,12 +77,11 @@ class CommentsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final homevm = HomeVM(story: story);
     return Scaffold(
         appBar: AppBar(
             title: Text(this.story.title), backgroundColor: Colors.orange),
         body: CommandBuilder(
-          command: homevm.commentsCommand,
+          command: getIt.get<HomeVM>().commentsCommand,
           whileExecuting: (context, comments, _) => Center(
             child: SizedBox(
               width: 50.0,
