@@ -47,7 +47,7 @@ class HomeView extends StatelessWidget {
               title: Text(stories[index].title, style: TextStyle(fontSize: 18)),
               trailing: Container(
                   decoration: BoxDecoration(
-                      color: Colors.green,
+                      color: Colors.purple[600],
                       borderRadius: BorderRadius.all(Radius.circular(16))),
                   alignment: Alignment.center,
                   width: 50,
@@ -79,7 +79,7 @@ class CommentsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: Text(this.story.title), backgroundColor: Colors.orange),
+            title: Text(this.story.title), backgroundColor: Colors.indigo),
         body: CommandBuilder(
           command: getIt.get<HomeVM>().commentsCommand,
           whileExecuting: (context, comments, _) => Center(
@@ -105,7 +105,7 @@ class CommentsView extends StatelessWidget {
                       width: 35,
                       height: 35,
                       decoration: BoxDecoration(
-                          color: Colors.purple,
+                          color: Colors.indigoAccent,
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                       child: Text("${1 + index}",
                           style: TextStyle(fontSize: 22, color: Colors.white))),
