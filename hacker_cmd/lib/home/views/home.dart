@@ -1,10 +1,12 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_command/command_builder.dart';
-
+import 'package:flutter_command/flutter_command.dart';
+import 'package:hacker_cmd/home/manager/home.manager.dart';
+import 'package:hacker_cmd/home/service/locator.dart';
 import 'package:hacker_cmd/models/common.dart';
-import 'package:hacker_cmd/service/locator.dart';
-import 'package:hacker_cmd/views/home.vm.dart';
+
 
 class HomeView extends StatelessWidget {
   @override
@@ -15,7 +17,7 @@ class HomeView extends StatelessWidget {
         backgroundColor: Colors.deepPurple,
       ),
       body: CommandBuilder(
-        command: getIt.get<HomeVM>().storiesCommand,
+        command: getIt.get<HomeManager>().storiesCommand,
         whileExecuting: (context, comments, _) => Center(
           child: SizedBox(
             width: 50.0,
@@ -34,7 +36,7 @@ class HomeView extends StatelessWidget {
           itemBuilder: (_, index) {
             return ListTile(
               onTap: () {
-                getIt.get<HomeVM>().fetchComments(stories[index]);
+                getIt.get<HomeManager>().fetchComments(stories[index]);
                 Navigator.push(
                   context,
                   CupertinoPageRoute(
@@ -81,7 +83,7 @@ class CommentsView extends StatelessWidget {
         appBar: AppBar(
             title: Text(this.story.title), backgroundColor: Colors.indigo),
         body: CommandBuilder(
-          command: getIt.get<HomeVM>().commentsCommand,
+          command: getIt.get<HomeManager>().commentsCommand,
           whileExecuting: (context, comments, _) => Center(
             child: SizedBox(
               width: 50.0,

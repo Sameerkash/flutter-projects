@@ -1,9 +1,9 @@
 import 'dart:convert';
 
+import 'package:hacker_cmd/models/common.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
-import '../models/common.dart';
 
 class UrlHelper {
   static String urlForStory(int storyId) {

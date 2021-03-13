@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hacker_cmd/service/locator.dart';
-import 'views/home.dart';
+import 'home/service/locator.dart';
+import 'home/views/home.dart';
+
 
 void main() {
   setUp();

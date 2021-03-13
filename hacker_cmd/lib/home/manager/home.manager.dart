@@ -1,19 +1,17 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter_command/flutter_command.dart';
-import 'package:hacker_cmd/service/locator.dart';
-
-import '../models/common.dart';
+import 'package:hacker_cmd/home/service/locator.dart';
+import 'package:hacker_cmd/models/common.dart';
 import '../service/repo.dart';
 
-class HomeVM {
+class HomeManager {
   final api = getIt.get<Service>();
 
   Command<void, List<Story>> storiesCommand;
   Command<Story, List<Comment>> commentsCommand;
 
-  HomeVM() {
+  HomeManager() {
     storiesCommand = Command.createAsyncNoParam<List<Story>>(topStories, []);
     storiesCommand();
 
