@@ -29,7 +29,7 @@ class TodoNotifier extends StateNotifier<List<Todo>> {
 
   final Reader read;
 
-  var searchState;
+  var searchState;  
   var previousState;
 
   void add(String description) {
